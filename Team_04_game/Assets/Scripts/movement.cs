@@ -9,6 +9,9 @@ public class movement : MonoBehaviour
     private bool onGround = false;
     private float yVelocity = 0f;
     public float gravity = 0.03f;
+    private Camera camera;
+    private GameObject[] boxes;
+    private GameObject boxToMove = null;
 
     public bool getOnGround() {
       return onGround;
@@ -18,6 +21,8 @@ public class movement : MonoBehaviour
     void Start()
     {
         transform = GetComponent<Transform>();
+        camera = Camera.main;
+        boxes = GameObject.FindGameObjectsWithTag("Box");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +33,7 @@ public class movement : MonoBehaviour
             onGround = true;
         }
     }
+
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.tag == "Floor") {
@@ -41,6 +47,9 @@ public class movement : MonoBehaviour
         float xPos = transform.position.x;
         float yPos = transform.position.y;
         float zPos = transform.position.z;
+        float oldXPos = xPos;
+        float oldYPos = yPos;
+        float oldZPos = zPos;
 
         if (!onGround && yVelocity != 0.0f) {
           yVelocity -= gravity;
@@ -49,10 +58,22 @@ public class movement : MonoBehaviour
           }
         }
 
+        foreach (GameObject box in boxes)
+        {
+            if (box.GetComponent<pullBehaviour>().contactWithPlayer)
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    boxToMove = box;
+                }
+                else {
+                    boxToMove = null;
+                }
+            }
+        }
         // if (onGround) {yVelocity = 0;}
         if (Input.GetKey(KeyCode.A)) {
             xPos -= speed;
-            // transform.position = new Vector3(xPos-speed,yPos,zPos);
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -64,5 +85,10 @@ public class movement : MonoBehaviour
             yVelocity = 0.1f * this.GetComponent<Rigidbody2D>().gravityScale;
         }
         transform.position = new Vector3(xPos, yPos + yVelocity, zPos);
+        Vector3 change = new Vector3(transform.position.x - oldXPos, transform.position.y - oldYPos, zPos - oldZPos);
+        if (boxToMove != null) {
+            boxToMove.transform.position = boxToMove.transform.position + change;
+        }
+        camera.transform.position = new Vector3(xPos, camera.transform.position.y, camera.transform.position.z);
     }
 }
