@@ -6,7 +6,10 @@ public class movement : MonoBehaviour
 {
     private Transform transform;
     public float speed = 0.02f;
+
     private bool onGround = false;
+    private List<GameObject> currentCollisions = new List<GameObject>();
+
     private Camera camera;
     private GameObject[] boxes;
     private GameObject boxToMove = null;
@@ -30,15 +33,24 @@ public class movement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Danger") {
+            // reset player
             transform.position = new Vector3(-0.83f, 0.26f, 0.0f);
-        } else if (collision.collider.tag == "Floor") {
+        } else {
+            currentCollisions.Add(collision.gameObject);
             onGround = true;
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Floor") {
+        currentCollisions.Remove(collision.gameObject);
+        bool stillTouchingGround = false;
+        for (int i = 0; i < currentCollisions.Count; i++) {
+            if (currentCollisions[i].tag == "Floor") {
+                stillTouchingGround = true;
+            }
+        }
+        if (!stillTouchingGround) {
             onGround = false;
         }
     }
@@ -66,7 +78,9 @@ public class movement : MonoBehaviour
                 }
             }
         }
-        // if (onGround) {yVelocity = 0;}
+        if (boxToMove != null && !boxToMove.GetComponent<pullBehaviour>().contactWithPlayer) {
+            boxToMove = null;
+        }
         if (Input.GetKey(KeyCode.A)) {
             xPos -= speed;
         }
