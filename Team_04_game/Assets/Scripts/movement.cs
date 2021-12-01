@@ -7,11 +7,12 @@ public class movement : MonoBehaviour
     private Transform transform;
     public float speed = 0.02f;
     private bool onGround = false;
-    private float yVelocity = 0f;
-    public float gravity = 0.03f;
     private Camera camera;
     private GameObject[] boxes;
     private GameObject boxToMove = null;
+    public float jumpAmount = 10;
+
+    private Rigidbody2D rb;
 
     public bool getOnGround() {
       return onGround;
@@ -23,6 +24,7 @@ public class movement : MonoBehaviour
         transform = GetComponent<Transform>();
         camera = Camera.main;
         boxes = GameObject.FindGameObjectsWithTag("Box");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -51,13 +53,6 @@ public class movement : MonoBehaviour
         float oldYPos = yPos;
         float oldZPos = zPos;
 
-        if (!onGround && yVelocity != 0.0f) {
-          yVelocity -= gravity;
-          if ((yVelocity < 0 && gravity > 0) || (yVelocity > 0 && gravity < 0)) {
-            yVelocity = 0;
-          }
-        }
-
         foreach (GameObject box in boxes)
         {
             if (box.GetComponent<pullBehaviour>().contactWithPlayer)
@@ -82,9 +77,9 @@ public class movement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W) && onGround)
         {
-            yVelocity = 0.1f * this.GetComponent<Rigidbody2D>().gravityScale;
+            rb.AddForce(Vector2.up * rb.gravityScale * jumpAmount, ForceMode2D.Impulse);
         }
-        transform.position = new Vector3(xPos, yPos + yVelocity, zPos);
+        transform.position = new Vector3(xPos, yPos, zPos);
         Vector3 change = new Vector3(transform.position.x - oldXPos, transform.position.y - oldYPos, zPos - oldZPos);
         if (boxToMove != null) {
             boxToMove.transform.position = boxToMove.transform.position + change;

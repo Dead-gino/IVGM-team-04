@@ -498,13 +498,21 @@ PrefabInstance:
       propertyPath: gravity
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: -6887628178923752007, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
+      propertyPath: jumpAmount
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: -1760856539210449899, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -1760856539210449899, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
       propertyPath: m_BodyType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1760856539210449899, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1760856539210449899, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
       propertyPath: m_Constraints
