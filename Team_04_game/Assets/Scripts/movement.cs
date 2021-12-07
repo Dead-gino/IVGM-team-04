@@ -10,6 +10,8 @@ public class movement : MonoBehaviour
     private bool onGround = false;
     private List<GameObject> currentCollisions = new List<GameObject>();
 
+    private Animator anim;
+
     private Camera camera;
     private GameObject[] boxes;
     private GameObject boxToMove = null;
@@ -24,6 +26,7 @@ public class movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         transform = GetComponent<Transform>();
         camera = Camera.main;
         boxes = GameObject.FindGameObjectsWithTag("Box");
@@ -84,8 +87,7 @@ public class movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) {
             xPos -= speed;
         }
-        if (Input.GetKey(KeyCode.D))
-        {
+        if (Input.GetKey(KeyCode.D)) {
             xPos += speed;
             // transform.position = new Vector3(xPos + speed, yPos, zPos);
         }
@@ -95,6 +97,15 @@ public class movement : MonoBehaviour
         }
         transform.position = new Vector3(xPos, yPos, zPos);
         Vector3 change = new Vector3(transform.position.x - oldXPos, transform.position.y - oldYPos, zPos - oldZPos);
+
+        anim.SetBool("Move_Right", false);
+        anim.SetBool("Move_Left", false);
+        if (change.x < 0) {
+          anim.SetBool("Move_Left", true);
+        } else if (change.x > 0) {
+          anim.SetBool("Move_Right", true);
+        }
+
         if (boxToMove != null) {
             boxToMove.transform.position = boxToMove.transform.position + change;
         }
