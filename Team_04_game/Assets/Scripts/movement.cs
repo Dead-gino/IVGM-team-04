@@ -100,13 +100,17 @@ public class movement : MonoBehaviour
         transform.position = new Vector3(xPos, yPos, zPos);
         Vector3 change = new Vector3(transform.position.x - oldXPos, transform.position.y - oldYPos, zPos - oldZPos);
 
-        anim.SetBool("Move_Right", false);
-        anim.SetBool("Move_Left", false);
-        if (change.x < 0) {
-          anim.SetBool("Move_Left", true);
-        } else if (change.x > 0) {
-          anim.SetBool("Move_Right", true);
+        var rotationVector = transform.rotation.eulerAngles;
+        anim.SetBool("Running", false);
+        if (change.x != 0) {
+            anim.SetBool("Running", onGround);
+            if (change.x < 0) {
+                rotationVector.y = 0;
+            } else if (change.x > 0) {
+                rotationVector.y = 180;
+            }
         }
+        transform.rotation = Quaternion.Euler(rotationVector);
 
         if (boxToMove != null) {
             boxToMove.transform.position = boxToMove.transform.position + change;
