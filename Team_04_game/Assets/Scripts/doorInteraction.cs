@@ -16,7 +16,11 @@ public class doorInteraction : MonoBehaviour
   void OnCollisionEnter2D(Collision2D collision)
   {
       if (collision.collider.tag == "Player") {
-          activated = true;
+            if (collision.gameObject.GetComponent<movement>().keys > 0)
+            {
+                activated = true;
+                collision.gameObject.GetComponent<movement>().keys--;
+            }
       }
   }
 

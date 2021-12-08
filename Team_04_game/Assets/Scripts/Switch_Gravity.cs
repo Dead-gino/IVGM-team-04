@@ -15,6 +15,7 @@ public class Switch_Gravity : MonoBehaviour
             return;
           }
           player.GetComponent<Rigidbody2D>().gravityScale *= -1;
+          //player.GetComponent<Transform>().rotation = new Vector3(180, 0, 0);
           foreach(GameObject objectChild in objects) {
             objectChild.GetComponent<Rigidbody2D>().gravityScale *= -1;
           }

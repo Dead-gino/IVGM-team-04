@@ -16,6 +16,7 @@ public class movement : MonoBehaviour
     private GameObject[] boxes;
     private GameObject boxToMove = null;
     public float jumpAmount = 10;
+    public int keys;
 
     private Rigidbody2D rb;
 
@@ -31,6 +32,7 @@ public class movement : MonoBehaviour
         camera = Camera.main;
         boxes = GameObject.FindGameObjectsWithTag("Box");
         rb = GetComponent<Rigidbody2D>();
+        keys = 0;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
