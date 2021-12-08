@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: Stop_Running
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Move_Left
+    m_ConditionEvent: Running
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 89455972648298623}
@@ -102,6 +102,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Move_Right
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Running
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -256,7 +262,7 @@ AnimatorStateTransition:
   m_Name: Start_Running_Left
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Move_Left
+    m_ConditionEvent: Running
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7631951888074933300}
