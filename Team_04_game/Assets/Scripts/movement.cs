@@ -20,6 +20,8 @@ public class movement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Vector3 start;
+
     public bool getOnGround() {
       return onGround;
     }
@@ -29,6 +31,7 @@ public class movement : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         transform = GetComponent<Transform>();
+        start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         camera = Camera.main;
         boxes = GameObject.FindGameObjectsWithTag("Box");
         rb = GetComponent<Rigidbody2D>();
@@ -39,7 +42,8 @@ public class movement : MonoBehaviour
     {
         if (collision.collider.tag == "Danger") {
             // reset player
-            transform.position = new Vector3(-0.83f, 0.26f, 0.0f);
+            //transform.position = new Vector3(-0.83f, 0.26f, 0.0f);
+            transform.position = start;
         } else {
             currentCollisions.Add(collision.gameObject);
             onGround = true;
@@ -115,6 +119,7 @@ public class movement : MonoBehaviour
         if (boxToMove != null) {
             boxToMove.transform.position = boxToMove.transform.position + change;
         }
-        camera.transform.position = new Vector3(xPos, camera.transform.position.y, camera.transform.position.z);
+        //camera.transform.position = new Vector3(xPos, camera.transform.position.y, camera.transform.position.z);
+        camera.transform.position = new Vector3(xPos, yPos, camera.transform.position.z);
     }
 }
