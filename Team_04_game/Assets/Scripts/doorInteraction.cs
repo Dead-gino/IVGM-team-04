@@ -8,6 +8,7 @@ public class doorInteraction : MonoBehaviour
   public float range = 1.5f;
   private float origYPos;
   private bool activated;
+    public bool needKey = false;
 
   void Start() {
     origYPos = transform.position.y;
@@ -16,10 +17,16 @@ public class doorInteraction : MonoBehaviour
   void OnCollisionEnter2D(Collision2D collision)
   {
       if (collision.collider.tag == "Player") {
-            if (collision.gameObject.GetComponent<movement>().keys > 0)
+            if (needKey)
+            {
+                if (collision.gameObject.GetComponent<movement>().keys > 0)
+                {
+                    activated = true;
+                    collision.gameObject.GetComponent<movement>().keys--;
+                }
+            } else
             {
                 activated = true;
-                collision.gameObject.GetComponent<movement>().keys--;
             }
       }
   }
