@@ -18,6 +18,8 @@ public class movement : MonoBehaviour
     public float jumpAmount = 10;
     public int keys;
 
+    private bool pulling;
+
     private Rigidbody2D rb;
 
     private Vector3 start;
@@ -36,6 +38,7 @@ public class movement : MonoBehaviour
         boxes = GameObject.FindGameObjectsWithTag("Box");
         rb = GetComponent<Rigidbody2D>();
         keys = 0;
+        pulling = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -74,11 +77,19 @@ public class movement : MonoBehaviour
         float oldYPos = yPos;
         float oldZPos = zPos;
 
+        if (Input.GetKeyDown(KeyCode.E) && pulling)
+        {
+            pulling = false;
+        } else if (Input.GetKeyDown(KeyCode.E))
+        {
+            pulling = true;
+        }
+
         foreach (GameObject box in boxes)
         {
             if (box.GetComponent<pullBehaviour>().contactWithPlayer)
             {
-                if (Input.GetKey(KeyCode.E))
+                if (pulling)
                 {
                     boxToMove = box;
                 }
