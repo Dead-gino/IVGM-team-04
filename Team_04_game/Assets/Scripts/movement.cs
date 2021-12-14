@@ -102,10 +102,10 @@ public class movement : MonoBehaviour
             boxToMove = null;
         }
         if (Input.GetKey(KeyCode.A)) {
-            xPos -= speed;
+            xPos -= speed*Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D)) {
-            xPos += speed;
+            xPos += speed*Time.deltaTime;
             // transform.position = new Vector3(xPos + speed, yPos, zPos);
         }
         if (Input.GetKeyDown(KeyCode.W) && onGround)

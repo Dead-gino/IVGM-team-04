@@ -9,6 +9,7 @@
 **/[Bb]uilds/
 **/[Ll]ogs/
 **/[Uu]ser[Ss]ettings/
+**/[Tt]ext[Mm]esh [Pp]ro/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -128,3 +129,5 @@ $RECYCLE.BIN/
 # IDEA folder
 /.idea/
 ProjectSettings/Packages/com.unity.probuilder/Settings.json
+
+**/[Tt]ext[Mm]esh [Pp]ro.meta
