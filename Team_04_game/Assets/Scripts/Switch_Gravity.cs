@@ -32,7 +32,7 @@ public class Switch_Gravity : MonoBehaviour
                 {
                     player.GetComponent<SpriteRenderer>().flipY = true;
                 }
-                foreach (GameObject objectChild in objects)
+                foreach (GameObject objectChild in boxes)
                 {
                     objectChild.GetComponent<Rigidbody2D>().gravityScale *= -1;
                 }
