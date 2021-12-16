@@ -16,15 +16,27 @@ public class Switch_Gravity : MonoBehaviour
     void Update()
     {
       if (Input.GetKeyDown(KeyCode.Q)) {
-          if (!player.GetComponent<movement>().getOnGround()) {
-            return;
-          }
-          player.GetComponent<Rigidbody2D>().gravityScale *= -1;
-          //player.GetComponent<Transform>().rotation = new Vector3(180, 0, 0);
-          foreach (GameObject box in boxes)
-          {
-              box.GetComponent<Rigidbody2D>().gravityScale *= -1;
-          }
+            if (!player.GetComponent<movement>().getOnGround())
+            {
+                return;
+            }
+            else
+            {
+                player.GetComponent<Rigidbody2D>().gravityScale *= -1;
+                //player.GetComponent<Transform>().rotation = new Vector3(180, 0, 0);
+                bool flipped;
+                if (flipped = player.GetComponent<SpriteRenderer>().flipY)
+                {
+                    player.GetComponent<SpriteRenderer>().flipY = false;
+                } else
+                {
+                    player.GetComponent<SpriteRenderer>().flipY = true;
+                }
+                foreach (GameObject objectChild in objects)
+                {
+                    objectChild.GetComponent<Rigidbody2D>().gravityScale *= -1;
+                }
+            }
       }
     }
 }
