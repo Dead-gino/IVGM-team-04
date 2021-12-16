@@ -45,7 +45,9 @@ public class movement : MonoBehaviour
     {
         if (collision.collider.tag == "Danger") {
             // reset player
-            //transform.position = new Vector3(-0.83f, 0.26f, 0.0f);
+            foreach (GameObject box in boxes) {
+                box.GetComponent<pullBehaviour>().resetPosition();
+            }
             transform.position = start;
         } else {
             currentCollisions.Add(collision.gameObject);
@@ -53,11 +55,23 @@ public class movement : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+      if (collision.tag == "Respawn") {
+          start = new Vector3(collision.transform.position.x,
+                      collision.transform.position.y + 0.5f,
+                      collision.transform.position.z);
+      }
+    }
+
     void OnCollisionExit2D(Collision2D collision)
     {
         currentCollisions.Remove(collision.gameObject);
         bool stillTouchingGround = false;
         for (int i = 0; i < currentCollisions.Count; i++) {
+            if (currentCollisions[i] == null) {
+                currentCollisions.RemoveAt(i);
+            }
             if (currentCollisions[i].tag == "Floor") {
                 stillTouchingGround = true;
             }

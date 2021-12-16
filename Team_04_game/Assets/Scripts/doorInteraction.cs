@@ -37,7 +37,7 @@ public class doorInteraction : MonoBehaviour
       float yPos = transform.position.y;
       float zPos = transform.position.z;
 
-      transform.position = new Vector3(xPos, yPos + speed, zPos);
+      transform.position = new Vector3(xPos, yPos + speed*Time.deltaTime, zPos);
     }
   }
 }

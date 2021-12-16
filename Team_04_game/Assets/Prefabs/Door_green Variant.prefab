@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2203765522261022078, guid: 610047e7bed1fff4a88b958856f22118, type: 3}
       propertyPath: m_Name
-      value: Door_green
+      value: Door_green Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233949474469564568, guid: 610047e7bed1fff4a88b958856f22118, type: 3}
+      propertyPath: speed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3307708452673694516, guid: 610047e7bed1fff4a88b958856f22118, type: 3}
       propertyPath: m_Materials.Array.data[0]

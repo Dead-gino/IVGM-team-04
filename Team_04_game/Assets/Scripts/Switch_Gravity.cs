@@ -5,7 +5,12 @@ using UnityEngine;
 public class Switch_Gravity : MonoBehaviour
 {
     public GameObject player;
-    public List<GameObject> objects;
+    private GameObject[] boxes;
+
+    void Start()
+    {
+      boxes = GameObject.FindGameObjectsWithTag("Box");
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,8 +21,9 @@ public class Switch_Gravity : MonoBehaviour
           }
           player.GetComponent<Rigidbody2D>().gravityScale *= -1;
           //player.GetComponent<Transform>().rotation = new Vector3(180, 0, 0);
-          foreach(GameObject objectChild in objects) {
-            objectChild.GetComponent<Rigidbody2D>().gravityScale *= -1;
+          foreach (GameObject box in boxes)
+          {
+              box.GetComponent<Rigidbody2D>().gravityScale *= -1;
           }
       }
     }
