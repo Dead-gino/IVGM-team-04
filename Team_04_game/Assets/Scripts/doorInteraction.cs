@@ -14,9 +14,9 @@ public class doorInteraction : MonoBehaviour
     origYPos = transform.position.y;
   }
 
-  void OnCollisionEnter2D(Collision2D collision)
+  void OnTriggerEnter2D(Collider2D collision)
   {
-      if (collision.collider.tag == "Player") {
+      if (collision.tag == "Player") {
             if (needKey)
             {
                 if (collision.gameObject.GetComponent<movement>().keys > 0)
