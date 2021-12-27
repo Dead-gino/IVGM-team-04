@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
     private Camera camera;
     private GameObject[] boxes;
     private GameObject boxToMove = null;
+    private GameObject interactable = null;
     public float jumpAmount = 10;
     public int keys;
 
@@ -48,6 +49,7 @@ public class movement : MonoBehaviour
             foreach (GameObject box in boxes) {
                 box.GetComponent<pullBehaviour>().resetPosition();
             }
+            pulling = false;
             transform.position = start;
         } else {
             currentCollisions.Add(collision.gameObject);
@@ -57,11 +59,21 @@ public class movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-      if (collision.tag == "Respawn") {
-          start = new Vector3(collision.transform.position.x,
-                      collision.transform.position.y + 0.5f,
-                      collision.transform.position.z);
-      }
+        if (collision.tag == "Respawn") {
+            start = new Vector3(collision.transform.position.x,
+                        collision.transform.position.y + 0.5f,
+                        collision.transform.position.z);
+        } else if (collision.tag == "Interactable") {
+            interactable = collision.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.tag == "Interactable") {
+            interactable.transform.GetChild(1).gameObject.SetActive(false);
+            interactable = null;
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -125,6 +137,10 @@ public class movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && onGround)
         {
             rb.AddForce(Vector2.up * rb.gravityScale * jumpAmount, ForceMode2D.Impulse);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && interactable != null) {
+            interactable.transform.GetChild(1).gameObject.SetActive(!interactable.transform.GetChild(1).gameObject.activeSelf);
         }
         transform.position = new Vector3(xPos, yPos, zPos);
         Vector3 change = new Vector3(transform.position.x - oldXPos, transform.position.y - oldYPos, zPos - oldZPos);
