@@ -6986,11 +6986,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8840527846756161393, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8840527846756161393, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8840527846756161393, guid: 7600b80527a2b084a85c196d908a234f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8779,7 +8779,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "walk into crates\n to push"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9837,7 +9837,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11382,8 +11382,8 @@ Transform:
   - {fileID: 1880076376}
   - {fileID: 336591164}
   - {fileID: 531342857}
-  - {fileID: 1456349764}
   - {fileID: 1566137332}
+  - {fileID: 1456349764}
   - {fileID: 332206386}
   - {fileID: 898752120}
   m_Father: {fileID: 156062419}
@@ -24918,7 +24918,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Q to flip gravity
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -41566,7 +41566,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Return here \non reset"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -44933,6 +44933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1355760934}
   - component: {fileID: 1355760933}
+  - component: {fileID: 1355760935}
   m_Layer: 0
   m_Name: door - red
   m_TagString: Untagged
@@ -45005,6 +45006,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1355760935
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355760932}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16fa314159c6f2f42a02b76089979e25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1357041738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5365308780969714051, guid: 2ea634110353013438e0ac97b8d9619e, type: 3}
@@ -45939,7 +45959,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Hold E \nto pull boxes"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -48084,7 +48104,7 @@ MonoBehaviour:
 
     station on hitting spikes'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -72534,6 +72554,14 @@ PrefabInstance:
     - target: {fileID: 2535832404654417314, guid: 333812cf4be179f40adafbdc99d13ea9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535832404654417315, guid: 333812cf4be179f40adafbdc99d13ea9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ad904286cb20e5c4db7b3c47fc747bdd, type: 3}
+    - target: {fileID: 2535832404654417326, guid: 333812cf4be179f40adafbdc99d13ea9, type: 3}
+      propertyPath: needKey
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2535832404654417327, guid: 333812cf4be179f40adafbdc99d13ea9, type: 3}
       propertyPath: m_Name
