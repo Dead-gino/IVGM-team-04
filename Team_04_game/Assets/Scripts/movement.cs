@@ -54,6 +54,8 @@ public class movement : MonoBehaviour
         } else {
             currentCollisions.Add(collision.gameObject);
             onGround = true;
+            anim.SetBool("In_Air", false);
+            System.Console.WriteLine("standing");
         }
     }
 
@@ -90,6 +92,7 @@ public class movement : MonoBehaviour
         }
         if (!stillTouchingGround) {
             onGround = false;
+            anim.SetBool("In_Air", true);
         }
     }
 
@@ -103,12 +106,12 @@ public class movement : MonoBehaviour
         float oldYPos = yPos;
         float oldZPos = zPos;
 
-        if (Input.GetKeyDown(KeyCode.E) && pulling)
-        {
-            pulling = false;
-        } else if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             pulling = true;
+        } else
+        {
+            pulling = false;
         }
 
         foreach (GameObject box in boxes)
@@ -147,6 +150,7 @@ public class movement : MonoBehaviour
 
         var rotationVector = transform.rotation.eulerAngles;
         anim.SetBool("Running", false);
+
         if (change.x != 0) {
             anim.SetBool("Running", onGround);
             if (change.x < 0) {
