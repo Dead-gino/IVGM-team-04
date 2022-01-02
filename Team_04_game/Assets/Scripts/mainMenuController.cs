@@ -8,7 +8,7 @@ public class mainMenuController : MonoBehaviour
 {
 
     public void startGame() {
-        SceneManager.LoadScene("Scenes/Implementation 1.unity");
+        SceneManager.LoadScene("Assets/Scenes/Implementation 1.unity");
     }
     
     public void quitGame()
