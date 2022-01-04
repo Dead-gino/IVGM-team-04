@@ -11,6 +11,11 @@ public class mainMenuController : MonoBehaviour
         SceneManager.LoadScene("Assets/Scenes/Implementation 1.unity");
     }
     
+    public void startCredits()
+    {
+        SceneManager.LoadScene("Assets/Scenes/Credits.unity");
+    }
+
     public void quitGame()
     {
         Application.Quit();
