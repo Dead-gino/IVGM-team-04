@@ -7,8 +7,8 @@ public class doorInteraction : MonoBehaviour
   public float speed = 0.001f;
   public float range = 1.5f;
   private float origYPos;
-  private bool activated;
-    public bool needKey = false;
+  public bool activated;
+  public bool needKey = false;
 
   void Start() {
     origYPos = transform.position.y;

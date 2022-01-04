@@ -6,6 +6,7 @@ public class Switch_Gravity : MonoBehaviour
 {
     public GameObject player;
     private GameObject[] boxes;
+    public bool play_jump;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class Switch_Gravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        play_jump = false;
       if (Input.GetKeyDown(KeyCode.Q)) {
             if (!player.GetComponent<movement>().getOnGround())
             {
@@ -25,6 +27,7 @@ public class Switch_Gravity : MonoBehaviour
                 player.GetComponent<Rigidbody2D>().gravityScale *= -1;
                 //player.GetComponent<Transform>().rotation = new Vector3(180, 0, 0);
                 bool flipped;
+                play_jump = true;
                 if (flipped = player.GetComponent<SpriteRenderer>().flipY)
                 {
                     player.GetComponent<SpriteRenderer>().flipY = false;
