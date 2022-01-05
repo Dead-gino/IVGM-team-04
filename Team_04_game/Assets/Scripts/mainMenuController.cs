@@ -16,6 +16,16 @@ public class mainMenuController : MonoBehaviour
         SceneManager.LoadScene("Assets/Scenes/Credits.unity");
     }
 
+    public void musicCredits()
+    {
+        SceneManager.LoadScene("Assets/Scenes/Music_Credits.unity");
+    }
+
+    public void menu()
+    {
+        SceneManager.LoadScene("Assets/Scenes/Menu.unity");
+    }
+
     public void quitGame()
     {
         Application.Quit();
