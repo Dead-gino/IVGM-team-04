@@ -106,7 +106,7 @@ public class movement : MonoBehaviour
         float oldYPos = yPos;
         float oldZPos = zPos;
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             pulling = true;
         } else
@@ -159,11 +159,22 @@ public class movement : MonoBehaviour
                 rotationVector.y = 180;
             }
         }
-        transform.rotation = Quaternion.Euler(rotationVector);
 
         if (boxToMove != null) {
             boxToMove.transform.position = boxToMove.transform.position + change;
+            if ((boxToMove.transform.position.x < transform.position.x && rotationVector.y == 180) || (boxToMove.transform.position.x > transform.position.x && rotationVector.y == 0)) {
+              anim.SetBool("Pull", true);
+              anim.SetBool("Push", false);
+            } else {
+              anim.SetBool("Push", true);
+              anim.SetBool("Pull", false);
+            }
+        } else {
+          anim.SetBool("Pull", false);
+          anim.SetBool("Push", false);
         }
+        
+        transform.rotation = Quaternion.Euler(rotationVector);
         //camera.transform.position = new Vector3(xPos, camera.transform.position.y, camera.transform.position.z);
         camera.transform.position = new Vector3(xPos, yPos, camera.transform.position.z);
     }
