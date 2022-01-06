@@ -16,6 +16,7 @@ public class movement : MonoBehaviour
     private GameObject[] boxes;
     private GameObject boxToMove = null;
     private GameObject interactable = null;
+    private GameObject dia = null;
     public float jumpAmount = 10;
     public int keys;
 
@@ -61,21 +62,33 @@ public class movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Respawn") {
+        if (collision.tag == "Respawn")
+        {
             start = new Vector3(collision.transform.position.x,
                         collision.transform.position.y + 0.5f,
                         collision.transform.position.z);
-        } else if (collision.tag == "Interactable") {
+        }
+        else if (collision.tag == "Interactable")
+        {
             interactable = collision.gameObject;
+        }
+        else if (collision.tag == "dialogue")
+        {
+            collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Interactable") {
+        if (collider.tag == "Interactable")
+        {
             interactable.transform.GetChild(0).gameObject.SetActive(false);
             interactable = null;
         }
+        //else if (collider.tag == "dialogue")
+        //{
+        //    collider.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //}
     }
 
     void OnCollisionExit2D(Collision2D collision)

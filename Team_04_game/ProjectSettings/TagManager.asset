@@ -8,6 +8,8 @@ TagManager:
   - Danger
   - Box
   - Interactable
+  - dialogue
+  - End
   layers:
   - Default
   - TransparentFX
