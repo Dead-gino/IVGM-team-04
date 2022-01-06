@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
-    private Transform transform;
+    private Transform transf;
     public float speed = 0.02f;
 
     private bool onGround = false;
@@ -12,7 +12,7 @@ public class movement : MonoBehaviour
 
     private Animator anim;
 
-    private Camera camera;
+    private Camera cam;
     private GameObject[] boxes;
     private GameObject boxToMove = null;
     private GameObject interactable = null;
@@ -33,9 +33,9 @@ public class movement : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        transform = GetComponent<Transform>();
-        start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        camera = Camera.main;
+        transf = GetComponent<Transform>();
+        start = new Vector3(transf.position.x, transf.position.y, transf.position.z);
+        cam = Camera.main;
         boxes = GameObject.FindGameObjectsWithTag("Box");
         rb = GetComponent<Rigidbody2D>();
         keys = 0;
@@ -50,7 +50,7 @@ public class movement : MonoBehaviour
                 box.GetComponent<pullBehaviour>().resetPosition();
             }
             pulling = false;
-            transform.position = start;
+            transf.position = start;
         } else {
             currentCollisions.Add(collision.gameObject);
             onGround = true;
@@ -73,7 +73,7 @@ public class movement : MonoBehaviour
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == "Interactable") {
-            interactable.transform.GetChild(1).gameObject.SetActive(false);
+            interactable.transform.GetChild(0).gameObject.SetActive(false);
             interactable = null;
         }
     }
@@ -99,9 +99,9 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xPos = transform.position.x;
-        float yPos = transform.position.y;
-        float zPos = transform.position.z;
+        float xPos = transf.position.x;
+        float yPos = transf.position.y;
+        float zPos = transf.position.z;
         float oldXPos = xPos;
         float oldYPos = yPos;
         float oldZPos = zPos;
@@ -143,12 +143,13 @@ public class movement : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E) && interactable != null) {
-            interactable.transform.GetChild(1).gameObject.SetActive(!interactable.transform.GetChild(1).gameObject.activeSelf);
+            interactable.transform.GetChild(0).gameObject.SetActive(!interactable.transform.GetChild(0).gameObject.activeSelf);
+            //interactable.transform.GetChild(0).gameObject.SetActive(true);
         }
-        transform.position = new Vector3(xPos, yPos, zPos);
-        Vector3 change = new Vector3(transform.position.x - oldXPos, transform.position.y - oldYPos, zPos - oldZPos);
+        transf.position = new Vector3(xPos, yPos, zPos);
+        Vector3 change = new Vector3(transf.position.x - oldXPos, transf.position.y - oldYPos, zPos - oldZPos);
 
-        var rotationVector = transform.rotation.eulerAngles;
+        var rotationVector = transf.rotation.eulerAngles;
         anim.SetBool("Running", false);
 
         if (change.x != 0) {
@@ -162,7 +163,7 @@ public class movement : MonoBehaviour
 
         if (boxToMove != null) {
             boxToMove.transform.position = boxToMove.transform.position + change;
-            if ((boxToMove.transform.position.x < transform.position.x && rotationVector.y == 180) || (boxToMove.transform.position.x > transform.position.x && rotationVector.y == 0)) {
+            if ((boxToMove.transform.position.x < transf.position.x && rotationVector.y == 180) || (boxToMove.transform.position.x > transf.position.x && rotationVector.y == 0)) {
               anim.SetBool("Pull", true);
               anim.SetBool("Push", false);
             } else {
@@ -174,8 +175,8 @@ public class movement : MonoBehaviour
           anim.SetBool("Push", false);
         }
         
-        transform.rotation = Quaternion.Euler(rotationVector);
+        transf.rotation = Quaternion.Euler(rotationVector);
         //camera.transform.position = new Vector3(xPos, camera.transform.position.y, camera.transform.position.z);
-        camera.transform.position = new Vector3(xPos, yPos, camera.transform.position.z);
+        cam.transform.position = new Vector3(xPos, yPos, cam.transform.position.z);
     }
 }
