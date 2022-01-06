@@ -17,7 +17,7 @@ public class pullBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +38,6 @@ public class pullBehaviour : MonoBehaviour
 
     public void resetPosition()
     {
-      transform.position = startingPos;
+        transform.position = startingPos;
     }
 }
