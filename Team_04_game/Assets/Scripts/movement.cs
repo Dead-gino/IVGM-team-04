@@ -191,5 +191,10 @@ public class movement : MonoBehaviour
         transf.rotation = Quaternion.Euler(rotationVector);
         //camera.transform.position = new Vector3(xPos, camera.transform.position.y, camera.transform.position.z);
         cam.transform.position = new Vector3(xPos, yPos, cam.transform.position.z);
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            transf.position = start;
+        }
     }
 }
